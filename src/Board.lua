@@ -13,10 +13,29 @@
 
 Board = Class{}
 
-function Board:init(x, y)
+function Board:init(x, y, level)
     self.x = x
     self.y = y
     self.matches = {}
+    self.level = level
+    self.colorOffset = math.floor(self.level / 4)
+
+    local shuffled_colors = shuffled_numbers(18)
+
+    -- get first 8 + colorOffset from shuffled_colors table
+    self.colors = {}
+
+    for i = 1, 8 + self.colorOffset do
+        table.insert(self.colors, shuffled_colors[i])
+    end
+
+    local variety = 1
+
+    if self.colorOffset > 1 then
+        variety = math.random(1, self.colorOffset)
+    end
+
+    self.variety = variety
 
     self:initializeTiles()
 end
@@ -30,9 +49,8 @@ function Board:initializeTiles()
         table.insert(self.tiles, {})
 
         for tileX = 1, 8 do
-            
             -- create a new tile at X,Y with a random color and variety
-            table.insert(self.tiles[tileY], Tile(tileX, tileY, math.random(18), math.random(6)))
+            table.insert(self.tiles[tileY], Tile(tileX, tileY, self.colors[math.random(1, #self.colors)], self.variety))
         end
     end
 
@@ -240,7 +258,7 @@ function Board:getFallingTiles()
             if not tile then
 
                 -- new tile with random color and variety
-                local tile = Tile(x, y, math.random(18), math.random(6))
+                local tile = Tile(x, y, self.colors[math.random(1, #self.colors)], self.variety)
                 tile.y = -32
                 self.tiles[y][x] = tile
 

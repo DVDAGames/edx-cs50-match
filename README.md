@@ -7,7 +7,7 @@ The game is a variation of classic Match 3 mechanics, where the player must swap
 The goal of the project is to take the provided [Love2D](https://love2d.org/) project and add several features to it:
 
 - [x] Increment timer for each match
-- [ ] Only start with simple tiles instead of pulling from every tile variation
+- [x] Only start with simple tiles instead of pulling from every tile variation
 - [ ] Add random "shiny" variant blocks that will clear a whole row on matching and add points for each block in the row
 - [ ] Only allow swapping when it results in a match
 - [ ] (_Optional_) Implement mouse-based controls

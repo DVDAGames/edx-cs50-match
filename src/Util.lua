@@ -83,3 +83,26 @@ function print_r ( t )
     end
     print()
 end
+
+--[[
+    Shuffling a table of numbers
+    borrowed from: https://stackoverflow.com/a/64071746/656011
+]]
+function shuffle (arr)
+    for i = 1, #arr - 1 do
+        local j = math.random(i, #arr)
+        arr[i], arr[j] = arr[j], arr[i]
+    end
+end
+
+function shuffled_numbers (n, arr)
+    local numbers = {}
+    for i = 1, n do
+        numbers[i] = i
+    end
+
+    shuffle(numbers)
+
+    return numbers
+end
+  
